@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Player List{% endblock %}
+
+{% block content %}
+  <h1>Player List</h1>
+  <div class="row">
+    {% for player in players %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            {% if player.photo %}
+              <img class="card-img-top" src="{{ player.photo.url }}" alt="{{ player.name }}">
+            {% endif %}
+            <h5 class="card-title">{{ player.name }}</h5>
+            <p class="card-text">{{ player.email }}</p>
+            <p class="card-text">Age : {{ player.age }}</p>
+            <a class="card-title">{{ player.name }}</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

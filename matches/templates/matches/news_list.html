@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}News List{% endblock %}
+
+{% block content %}
+  <h2>News List</h2>
+ <div class="container mt-5">
+    <div class="row">
+      {% for new in news %}
+        <div class="col-md-4 mb-4">
+          <div class="card" style="width: 100%;">
+            {% if new.image %}
+              <img class="card-img-top" src="{{ new.image.url }}" alt="{{ new.title }}">
+            {% endif %}
+            <div class="card-body">
+              <h3 class="card-title">{{ new.title }}</h3>
+              <p class="card-text">{{ new.description }}</p>
+              <p class="card-text">Date: {{ new.date }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div> 
+  
+
+  {% for news in page_obj %}
+  {{ news.full_name|upper }}<br>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+  
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+  
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+{% endblock %}

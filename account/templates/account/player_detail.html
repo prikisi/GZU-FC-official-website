@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Player Detail{% endblock %}
+{% block content %}
+  <h1>{{ player.name }}</h1>
+  <p>Sex: {{ player.sex }}</p>
+  <p>Phone Number: {{ player.phone_number }}</p>
+  <p>Email: {{ player.email }}</p>
+  <p>Age: {{ player.age }}</p>
+{% endblock %}

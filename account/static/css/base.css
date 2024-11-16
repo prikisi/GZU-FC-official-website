@@ -1,0 +1,48 @@
+/* General styles */
+body {
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+}
+
+/* Target the login page */
+body.login-page {
+    display: flex;
+    height: 150vh;
+    background: linear-gradient(to left, #1ac71c 50%, transparent 50%), url("{% static 'images/login-bg.jpg' %}") no-repeat right center;
+    background-size: cover;
+}
+
+/* Optionally style the content area */
+#content {
+    flex: 1;
+    padding: 30px 50px;
+    background-color: #09a921; /* White background for content */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Muli', sans-serif;
+    font-weight: normal;
+}
+
+p {
+    line-height: 1.8;
+}
+
+/* Form styles */
+input, textarea {
+    margin: 10px 0;
+    padding: 6px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+input[type="submit"] {
+    background-color: #12c064;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+

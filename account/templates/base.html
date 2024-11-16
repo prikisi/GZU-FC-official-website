@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link href="{% static "css/base.css" %}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+</head>
+<body>
+<div id="header">
+    <span class="logo">
+        <img src="{% static 'images/logo.jpg' %}"  class="badge-logo"> Great Zimbabwe University FC
+    </span>
+    
+    {% if request.user.is_authenticated %}
+    <ul class="menu nav nav-tabs">
+        <li {% if section == "dashboard" %}class="nav-item selected"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="{% url "dashboard"%}">Dashboard</a>
+        </li>
+        <li {% if section == "matches" %}class="nav-item selected"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="{% url 'match_list' %}">Matchs</a>
+        </li>
+        <li {% if section == "news" %}class="nav-item selected"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="{% url 'news_list' %}">News</a>
+        </li>
+        <li {% if section == "players" %}class="nav-item selected"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="{% url 'player_list' %}">Players</a>
+        </li>
+    </ul>
+    
+    
+    {% endif %}
+    <span class="user">
+        {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name }},
+            <a href="{% url 'player_dashboard' %}">My dashboard</a>
+            <h6><a href="{% url "logout" %}"> Logout</a></h6>
+        {% else %}
+            <a href="{% url "login" %}">Log-in</a>
+        {% endif %}
+    </span>
+</div>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                <a href="#" class="close">x</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<!-- Bootstrap Footer -->
+<!-- Custom Footer -->
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-muted">
+                    Designed and built by BrightonPrikisi
+                </p>
+                <p class="text-muted">
+                    Email: pirikisibrighton@gmail.com
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h5></h5>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-muted">
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-muted">
+                    <strong>Links</strong>: 
+                    <a href="#">Privacy Policy</a> | 
+                    <a href="#">Terms of Use</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
